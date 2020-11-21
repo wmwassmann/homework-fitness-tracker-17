@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3306;
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(express.static('public'));
 
 mongoose.connect(
-    process.env.MONGODB_URI || 'mongodb://localhost/FitnessTracker',
+    process.env.MONGODB_URI || 'mongodb://localhost/FITNESS_TRACKER',
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -22,7 +22,7 @@ mongoose.connect(
 
 const connectionSuccess = mongoose.connection
 connectionSuccess.once('open', _ => {
-  console.log('Database connected:', 'mongodb://localhost/FitnessTracker')
+  console.log('Database connected:', 'mongodb://localhost/FITNESS_TRACKER')
 })
 
 require("./routes/apiroutes")(app);
